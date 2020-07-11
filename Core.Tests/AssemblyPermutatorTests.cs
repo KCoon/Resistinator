@@ -24,16 +24,13 @@ namespace KCoon.Resistinator.Core
         [Test]
         public void Test2()
         {
-            var permutations = AssemblyPermutator.GetAllPermutations(ArrangeResistors());
+            var circuits = AssemblyPermutator.GetAllPermutations(ArrangeResistors());
 
             int i = 0;
-            foreach (var p in permutations)
+            foreach (var circuit in circuits)
             {
                 Console.WriteLine(i);
-                foreach (var assembly in p)
-                {
-                    Console.WriteLine(assembly.Resistor.Resistance + " " + assembly.Link);
-                }
+                Console.WriteLine(circuit);
                 i++;
             }
         }
@@ -42,17 +39,16 @@ namespace KCoon.Resistinator.Core
         public void Test3()
         {
             double nominalResistance = 11.5;
-            var permutations = AssemblyPermutator.GetAllPermutations(ArrangeResistors(20));
+            var permutations = AssemblyPermutator.GetAllPermutations(ArrangeResistors(23)).ToList();
 
-            var bestFit = new Circuit(permutations.First());
+            var bestFit = permutations.First();
             var smallestDelta = Math.Abs(bestFit.TotalResistance - nominalResistance);
 
             foreach (var p in permutations.Skip(1))
             {
-                var circuit = new Circuit(p);
-                if (Math.Abs(circuit.TotalResistance - nominalResistance) < smallestDelta)
+                if (Math.Abs(p.TotalResistance - nominalResistance) < smallestDelta)
                 {
-                    bestFit = circuit;
+                    bestFit = p;
                     smallestDelta = Math.Abs(bestFit.TotalResistance - nominalResistance);
                 }
             }
