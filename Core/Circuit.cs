@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace KCoon.Resistinator.Core
 {
@@ -37,6 +39,18 @@ namespace KCoon.Resistinator.Core
             }
 
             return totalResistance;
+        }
+
+        public override string ToString()
+        {
+            var result = new StringBuilder("Total = ");
+            result.Append(TotalResistance);
+            foreach (var assembly in Assemblies)
+            {
+                result.Append(Environment.NewLine + assembly.Resistor.Resistance + 
+                              " " + (assembly.Link == Link.Serial ? "S" : "P"));
+            }
+            return result.ToString();
         }
     }
 

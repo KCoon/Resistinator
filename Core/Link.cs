@@ -2,7 +2,7 @@
 {
     public enum Link
     {
-        Serial,
-        Parallel
+        Serial = 0,
+        Parallel = 1
     }
 }

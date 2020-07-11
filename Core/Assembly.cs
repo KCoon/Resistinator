@@ -1,4 +1,6 @@
-﻿namespace KCoon.Resistinator.Core
+﻿using System.Linq;
+
+namespace KCoon.Resistinator.Core
 {
     public class Assembly
     {
