@@ -4,6 +4,11 @@
     <AssemblyName>KCoon.Resistinator.Core</AssemblyName>
     <RootNamespace>$(AssemblyName)</RootNamespace>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <WarningsAsErrors>NU1605;nullable</WarningsAsErrors>
   </PropertyGroup>
 
 </Project>
