@@ -26,7 +26,7 @@ namespace KCoon.Resistinator.Core
             var foo = 0.0;
 
             // act
-            for (int i = 0; i < 1e+6; i++)
+            for (int i = 0; i < 1e+8; i++)
             {
                 foo += circuit.TotalResistance;
             }
@@ -45,10 +45,9 @@ namespace KCoon.Resistinator.Core
         private Circuit ArrangeBigCircuit(int depth)
         {
             var assemblies = new List<Assembly>();
-            for (var i = 0; i < depth/2; i++)
+            for (var i = 0; i < depth; i++)
             {
                 assemblies.Add(new Assembly(1, 0.25, Link.Serial));
-                assemblies.Add(new Assembly(1, 0.25, Link.Parallel));
             }
 
             return new Circuit(assemblies);

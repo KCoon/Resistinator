@@ -7,7 +7,7 @@ namespace KCoon.Resistinator.Core
     {
         public Circuit(IEnumerable<Assembly> assemblies)
         {
-            Assemblies = assemblies;
+            Assemblies = assemblies.ToArray();
         }
 
         public Circuit(params Assembly[] assemblies)
@@ -15,22 +15,22 @@ namespace KCoon.Resistinator.Core
             Assemblies = assemblies;
         }
 
-        public double TotalResistance => CalculateResistance(Assemblies);
+        public double TotalResistance => CalculateResistance(0);
 
-        private IEnumerable<Assembly> Assemblies { get; }
+        private Assembly[] Assemblies { get; }
 
-        private static double CalculateResistance(IEnumerable<Assembly> assemblies)
+        private double CalculateResistance(int index)
         {
             double totalResistance = 0;
-            var enumerable = assemblies.ToList();
-            for(var i=0; i<enumerable.Count(); i++)
+
+            for(var i=index; i < Assemblies.Length; i++)
             {
-                if (enumerable[i].Link == Link.Serial)
-                    totalResistance += enumerable[i].Resistor.Resistance;
+                if (Assemblies[i].Link == Link.Serial)
+                    totalResistance += Assemblies[i].Resistor.Resistance;
                 else
                 {
-                    var r1 = enumerable[i].Resistor.Resistance;
-                    var r2 = CalculateResistance(enumerable.Skip(i + 1));
+                    var r1 = Assemblies[i].Resistor.Resistance;
+                    var r2 = CalculateResistance(i+1);
                     totalResistance += 1 / ((1/r1) + (1/r2));
                     break;
                 }
