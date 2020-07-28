@@ -1,11 +1,13 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace KCoon.Resistinator.Core
 {
+    /// <summary>
+    ///     Represents circuit
+    /// </summary>
     public class Circuit
     {
         public Circuit(IEnumerable<Assembly> assemblies)
